@@ -35,7 +35,7 @@ iniciarPrograma();
 
 function secuenciaDeCambios() {
     ponerVerde();
-    setTimeout(parpadeoAmarillo, 4000);
+    setTimeout(parpadeoAmarillo, 3000);
 }
 
 function ponerVerde() {
@@ -47,23 +47,35 @@ function ponerVerde() {
 }
 
 function parpadeoAmarillo() {
-    semaforo[semaforoActual].verde.classList.remove('verdePrendido');
-    semaforo[semaforoActual].verde.classList.add('verde');
 
-    semaforo[semaforoActual].amarillo.classList.add('amarilloPrendido');
-    semaforo[semaforoActual].amarillo.classList.remove('amarillo');
     intervaloAmarillo1 = setInterval(() => {
-        semaforo[semaforoActual].amarillo.classList.toggle('amarilloPrendido'); // Agregar o remover la clase "activo"
+        semaforo[semaforoActual].verde.classList.toggle('verdePrendido'); // Agregar o remover la clase "activo"
     }, 1000);
     intervaloAmarillo2 = setInterval(() => {
-        semaforo[semaforoActual].amarillo.classList.toggle('amarillo'); // Agregar o remover la clase "activo"
+        semaforo[semaforoActual].verde.classList.toggle('verde'); // Agregar o remover la clase "activo"
     }, 1000);
+
+
 
     setTimeout(() => {
         clearInterval(intervaloAmarillo1); // Detener el primer intervalo
         clearInterval(intervaloAmarillo2); // Detener el segundo intervalo
-        ponerRojo();
+        ponerAmarillo();
     }, 5000);
+}
+
+function ponerAmarillo() {
+    semaforo[semaforoActual].amarillo.classList.add('amarilloPrendido');
+    semaforo[semaforoActual].amarillo.classList.remove('amarillo');
+
+    semaforo[semaforoActual].verde.classList.remove('verdePrendido');
+    semaforo[semaforoActual].verde.classList.add('verde');
+    setTimeout(() => {
+        clearInterval(intervaloAmarillo1); // Detener el primer intervalo
+        clearInterval(intervaloAmarillo2); // Detener el segundo intervalo
+        ponerRojo();
+    }, 3000);
+
 }
 
 function ponerRojo() {
@@ -82,6 +94,6 @@ function ponerRojo() {
     } else if (semaforoActual === 2) {
         semaforoActual = 0
     } 
-    console.log(semaforoActual);
-    setTimeout(secuenciaDeCambios, 4000);
+
+    setTimeout(secuenciaDeCambios, 1000);
 }
