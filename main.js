@@ -101,7 +101,7 @@ function ponerRojo() {
     setTimeout(secuenciaDeCambios, 1000);
 }
 
-function textosPendejos() {
+function textosP() {
     descripcion.textContent = 'Chequea este semáforo funcional y novedoso.';
 
     setTimeout(() => {
@@ -145,4 +145,4 @@ function textosPendejos() {
     }, 78000);
 }
 
-textosPendejos();
+textosP();
